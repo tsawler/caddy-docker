@@ -1,11 +1,9 @@
-from abiosoft/caddy:no-stats
+from abiosoft/caddy:1.0.0-no-stats
 
 EXPOSE 80
 EXPOSE 443
 
-WORKDIR /etc/caddy
-
-COPY Caddyfile Caddyfile
+ENV ACME_AGREE=true
 
 ENTRYPOINT ["/bin/parent", "caddy"]
-CMD ["--conf", "/etc/caddy/Caddyfile", "--log", "stdout", "--agree=true"]
+CMD ["--conf", "/Caddyfile", "--log", "stdout", "--agree=$ACME_AGREE"]
